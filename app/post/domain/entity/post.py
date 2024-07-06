@@ -11,3 +11,11 @@ class Post(Base, TimestampMixin):
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     content: Mapped[str] = mapped_column(String(255), nullable=False)
     title: Mapped[str] = mapped_column(String(255), nullable=False)
+
+
+class PostRead(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int = Field(..., title="POST ID")
+    content: str = Field(..., title="Content")
+    title: str = Field(..., title="Title")

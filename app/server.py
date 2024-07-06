@@ -5,6 +5,7 @@ from fastapi.responses import JSONResponse
 
 from app.auth.adapter.input.api import router as auth_router
 from app.container import Container
+from app.post.adapter.input.api import router as post_router
 from app.user.adapter.input.api import router as user_router
 from core.config import config
 from core.exceptions import CustomException
@@ -24,6 +25,7 @@ def init_routers(app_: FastAPI) -> None:
     auth_router.container = container
     app_.include_router(user_router)
     app_.include_router(auth_router)
+    app_.include_router(post_router)
 
 
 def init_listeners(app_: FastAPI) -> None:

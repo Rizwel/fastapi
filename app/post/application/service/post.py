@@ -2,17 +2,16 @@ from app.post.domain.usecase.post import PostUseCase
 from app.post.adapter.output.persistence.repository_adapter import PostRepositoryAdapter
 
 
-
-
 class PostService(PostUseCase):
+
     def __init__(self, *, repository: PostRepositoryAdapter):
         self.repository = repository
 
     async def get_post_list(
-        self,
-        *,
-        limit: int = 12,
-        prev: int | None = None,
+            self,
+            *,
+            limit: int = 12,
+            prev: int | None = None,
     ) -> list[Post]:
         return await self.repository.get_posts(limit=limit, prev=prev)
 
@@ -23,3 +22,6 @@ class PostService(PostUseCase):
         post = Post.from_dict(command.dict())
         await self.repository.save(post=post)
         return None
+
+
+
